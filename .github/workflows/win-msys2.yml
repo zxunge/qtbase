@@ -1,0 +1,44 @@
+name: windows-msys2
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  msys2:
+    runs-on: windows-latest
+
+    steps:
+    - name: Setup MSYS2 Environment
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: mingw32
+        update: true
+        install: >-
+          mingw-w64-i686-toolchain
+          mingw-w64-i686-cmake
+          mingw-w64-i686-openssl
+          base-devel
+          make
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        repository: zxunge/qtbase-win7
+        path: source
+
+    - name: Build
+      shell: msys2 {0}
+      run: |
+        cd source/
+        mkdir build && cd $_
+        ../configure -prefix ../qtbase -cmake-generator "Unix Makefiles" -platform win32-g++ -c++std c++17
+        make
+        make install
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: QtBase-git
+        path: qtbase

@@ -33,8 +33,8 @@ jobs:
             tools: ninja-build ccache
             install_cmd: sudo apt-get -y install
             configure_flags: -xcb -system-sqlite -system-pcre -system-zlib -system-freetype -system-libpng -system-libjpeg -system-harfbuzz -system-libb2 -system-doubleconversion -system-libmd4c
-          - name: ubuntu-latest
-            os:   ubuntu-latest
+          - name: ubuntu-18.04
+            os:   ubuntu-18.04
             # NOTE: system libb2 is not detected because version < 0.98.1 lacks pkg-config module
             # NOTE: system libharfbuzz is not detected because system has old version
             deps:  libgl-dev libglu-dev 'libxcb*-dev' libx11-xcb-dev libxkbcommon-x11-dev libpcre2-dev libz-dev libfreetype6-dev libpng-dev libjpeg-dev libsqlite3-dev libharfbuzz-dev libb2-dev libdouble-conversion-dev

@@ -33,10 +33,12 @@ jobs:
       run: |
         cd source/
         mkdir build && cd $_
-        ../configure --help
+        ../configure -prefix ../qtbase -cmake-generator "Unix Makefiles" -platform win32-g++ -c++std c++17
+        make
+        make install
         
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: QtBase-git
-        path: source
+        path: qtbase

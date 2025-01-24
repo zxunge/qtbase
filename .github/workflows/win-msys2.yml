@@ -19,6 +19,8 @@ jobs:
           mingw-w64-i686-toolchain
           mingw-w64-i686-cmake
           mingw-w64-i686-openssl
+          mingw-w64-i686-md4c
+          mingw-w64-i686-double-conversion
           base-devel
           make
 

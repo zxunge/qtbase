@@ -35,7 +35,7 @@ jobs:
       run: |
         cd source/
         mkdir build && cd $_
-        ../configure -prefix ../qtbase -cmake-generator "Unix Makefiles" -platform win32-g++ -c++std c++17 -D WINVER=0x0601 -D _WIN32_WINNT=0x0601
+        ../configure -prefix ../qtbase -cmake-generator "Unix Makefiles" -platform win32-g++ -no-feature-sql-psql -no-feature-sql-mysql -no-feature-sql-odbc -c++std c++17 -D WINVER=0x0601 -D _WIN32_WINNT=0x0601
         make
         make install
         

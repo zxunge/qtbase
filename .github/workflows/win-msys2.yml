@@ -35,9 +35,11 @@ jobs:
       run: |
         cd source/
         mkdir build && cd $_
-        ../configure -prefix ../qtbase -cmake-generator "Unix Makefiles" -debug-and-release -optimize-debug -platform win32-g++ -no-feature-sql-psql -no-feature-sql-mysql -no-feature-sql-odbc -c++std c++17 -D WINVER=0x0601 -D _WIN32_WINNT=0x0601
-        make -j$(nproc)
-        make install
+        ../configure -prefix ../qtbase -cmake-generator "Ninja Multi-Config" -debug-and-release -optimize-debug -platform win32-g++ -no-feature-sql-psql -no-feature-sql-mysql -no-feature-sql-odbc -c++std c++17 -D WINVER=0x0601 -D _WIN32_WINNT=0x0601
+        #make -j$(nproc)
+        #make install
+        ninja
+        ninja install
         
     - name: Upload artifact
       uses: actions/upload-artifact@v4
